@@ -27,4 +27,4 @@ function getHome(req, res) {
 
 
 //  Start up the server 
-app.listen(3000, () => console.log('Server up on 3000'));
+app.listen(PORT, () => console.log(`Server up on ${PORT}`));
