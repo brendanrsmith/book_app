@@ -4,6 +4,7 @@
 const express = require('express');
 const superagent = require('superagent');
 require('dotenv').config();
+const pg = require('pg'); // postgres
 
 // ==== Setup ====
 const app = express();
@@ -15,6 +16,10 @@ app.set('view engine', 'ejs'); // express handles ejs for us
 
 // ==== Other global variables ====
 const PORT = process.env.PORT || 3111;
+const DATABASE_URL = process.env.DATABASE_URL; // postgres url
+const client = new pg.Client(DATABASE_URL); // postgres client
+client.on('error', (error) => console.log(error));
+
 
 // ==== Routes ==== 
 app.get('/', getHome);
@@ -24,7 +29,12 @@ app.post('/searches', searchBooks);
 
 // ==== Route Callbacks ====
 function getHome(req, res) {
-    res.render('pages/index.ejs');
+    // Query SQL db for saved books
+    const sqlQuery = `SELECT * FROM books`;
+    return client.query(sqlQuery).then(result => {
+        console.log(result);
+        res.render('pages/index.ejs', {results : result.rows});
+    })
 }
 
 function getSearchPage(req, res) {
@@ -44,7 +54,7 @@ function searchBooks(req, res) {
     superagent.get(url).then(result => {
         // create new Book object
         const results = result.body.items.map(bookObj => {
-            // console.log(bookObj);
+            // console.log(new Book(bookObj));
             return new Book(bookObj);
         })
         // console.log(results);
@@ -67,4 +77,7 @@ function Book(bookObj) {
 }
 
 // ==== Start up the server ====
-app.listen(PORT, () => console.log(`Server up on ${PORT}`));
+client.connect() // Starts connection to postgres 
+.then ( () => {
+    app.listen(PORT, () => console.log(`we are up on PORT ${PORT}`)); // Starts up server
+});
