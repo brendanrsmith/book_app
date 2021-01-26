@@ -1,0 +1,29 @@
+body {
+    background-color: #301d7040;
+}
+h4 {
+    font-style: italic;
+}
+h3{
+    font-size: 20px;
+}
+li {
+    background-color: #eee;
+}
+fieldset {
+    background-color: #666;
+}
+.header {
+    text-align: center;
+    padding: 10px;
+    background-color: #888;
+}
+form {
+    color: #eee;
+    align-items: center;
+}
+nav {
+    background-color: #666;
+    color: #eee;
+    padding: 10px;
+}
