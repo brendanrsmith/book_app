@@ -86,9 +86,9 @@ Actual time needed to complete: 0:05
 ## Lab 12 
 Number and name of feature: Display saved books on homepage
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 1:00
 
-Start time: _____
+Start time: 3:35
 
 Finish time: _____
 
