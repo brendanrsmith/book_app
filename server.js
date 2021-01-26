@@ -3,6 +3,7 @@
 // ==== Packages ====
 const express = require('express');
 const superagent = require('superagent');
+require('dotenv').config();
 
 // ==== Setup ====
 const app = express();
