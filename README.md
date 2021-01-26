@@ -18,6 +18,7 @@ TA Skylar (!)
 https://stackoverflow.com/questions/16193279/how-can-i-limit-a-text-inside-a-p
 https://www.w3schools.com/tags/att_input_type_radio.asp
 
+## Lab 11
 Number and name of feature: Setup
 
 Estimate of time needed to complete: 1hr
@@ -81,3 +82,54 @@ Start time: 8:00
 Finish time: 8:05
 
 Actual time needed to complete: 0:05
+
+## Lab 12 
+Number and name of feature: Display saved books on homepage
+
+Estimate of time needed to complete: _____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+Number and name of feature: Book details page
+
+Estimate of time needed to complete: _____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+Number and name of feature: Save new books to Database
+
+Estimate of time needed to complete: _____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+Number and name of feature: Create partials
+
+Estimate of time needed to complete: _____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+Number and name of feature: CSS
+
+Estimate of time needed to complete: _____
+
+Start time: _____
+
+Finish time: _____
+
+Actual time needed to complete: _____
