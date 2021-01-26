@@ -10,7 +10,16 @@
     <title>Show</title>
 </head>
 <body>
-    <h1>this is show.ejs</h1>
-    <p>this will be teh results page</p>
+    <h1>Search Results</h1>
+    <ul>
+        <% for(let i = 0; i < results.length; i++){ %>
+            <li>
+                <img src="<%= results[i].img_url %>"></img>
+                <h2><%= results[i].title %></h2>
+                <h3><%= results[i].author %></h3>
+                <p><%= results[i].description %></p>
+            </li>
+        <% } %>
+    </ul>
 </body>
 </html>

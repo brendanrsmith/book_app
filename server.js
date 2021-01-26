@@ -18,7 +18,8 @@ const PORT = process.env.PORT || 3111;
 // ==== Routes ==== 
 app.get('/', getHome);
 app.get('/searches/new', getSearchPage);
-app.post('/searches/new', searchBooks);
+// app.post('/searches/new', );
+app.post('/searches', searchBooks);
 
 // ==== Route Callbacks ====
 function getHome(req, res) {
@@ -30,10 +31,32 @@ function getSearchPage(req, res) {
 }
 
 function searchBooks(req, res) {
-    res.render('pages/searches/show.ejs');
+    const query = req.body.userInput;
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${query}`;
+    superagent.get(url).then(result => {
+        // create new Book object
+        const results = result.body.items.map(bookObj => {
+            console.log(bookObj);
+            return new Book(bookObj);
+        })
+        // console.log(results);
+        // render results page
+        res.render('pages/searches/show.ejs', {results: results} );
+    })
+    // error handling
+    .catch(error => {
+        res.status(500).send('Google books api Failed');
+        console.log(error.message);
+    }); 
 }
 
 // === Helper functions ====
+function Book(bookObj) {
+    this.img_url = bookObj.volumeInfo.imageLinks.thumbnail? bookObj.volumeInfo.imageLinks.thumbnail : 'https://www.freeiconspng.com/uploads/book-icon--icon-search-engine-6.png',
+    this.title = bookObj.volumeInfo.title? bookObj.volumeInfo.title : 'Title not found',
+    this.author = bookObj.volumeInfo.authors? bookObj.volumeInfo.authors[0] : 'Author not found', // takes first if multiple authors
+    this.description = bookObj.volumeInfo.description? bookObj.volumeInfo.description : 'no description'
+}
 
 // ==== Start up the server ====
 app.listen(PORT, () => console.log(`Server up on ${PORT}`));
