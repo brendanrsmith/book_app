@@ -1,7 +1,7 @@
 # book_app
-codefellows week 3 lab 
+codefellows 301 week 3 lab
 
-**Author**: Brendan Smith, Lauren Sierra
+**Authors**: Brendan Smith, Lauren Sierra
 **Version**: 1.0.0
 
 ## Overview
@@ -15,12 +15,22 @@ codefellows week 3 lab
 
 ## Credits and Collaborations
 
-Number and name of feature: ________________________________
+Number and name of feature: Setup
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 1hr
 
-Start time: _____
+Start time: 2:15
 
-Finish time: _____
+Finish time: 3:20
+
+Actual time needed to complete: 1:05
+
+Number and name of feature: Google Books API
+
+Estimate of time needed to complete: 1hr
+
+Start time: 3:25
+
+Finish time: 
 
 Actual time needed to complete: _____
