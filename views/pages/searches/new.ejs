@@ -11,13 +11,13 @@
 </head>
 <body>
     <nav>
-        <h1>Best Books!</h1>
+        <h1><a href="/">Best Books!</a></h1>
     </nav>
+    <legend class="header">Search by Title or Author</legend>
 
     <form action="/searches" method="POST">
-        <legend class="header">Search by Title or Author</legend>
         <fieldset>
-            <input type="text" name="userInput" placeholder="Enter a title or author">
+            <input class="full-width" type="text" name="userInput" placeholder="Enter a title or author">
         </fieldset>
         <fieldset>
             <label for="title">Title</label>
@@ -28,7 +28,7 @@
             <input type="radio" id='author' name="authorOrTitle" value="author">
         </fieldset>
         <fieldset>
-            <input type="submit" value="Search the Google Books API">
+            <input class="full-width" type="submit" value="Search the Google Books API">
         </fieldset>
     </form>
 </body>
