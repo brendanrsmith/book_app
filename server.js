@@ -32,11 +32,18 @@ function getSearchPage(req, res) {
 
 function searchBooks(req, res) {
     const query = req.body.userInput;
-    const url = `https://www.googleapis.com/books/v1/volumes?q=${query}`;
+    console.log(query);
+    let url;
+    if(req.body.authorOrTitle === 'title'){
+        url = `https://www.googleapis.com/books/v1/volumes?q=intitle:${query}`;
+    } else {
+        url = `https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}`;
+    }
+    // const url = `https://www.googleapis.com/books/v1/volumes?q=${query}`;
     superagent.get(url).then(result => {
         // create new Book object
         const results = result.body.items.map(bookObj => {
-            console.log(bookObj);
+            // console.log(bookObj);
             return new Book(bookObj);
         })
         // console.log(results);
@@ -45,14 +52,14 @@ function searchBooks(req, res) {
     })
     // error handling
     .catch(error => {
-        res.status(500).send('Google books api Failed');
+        res.status(500).render('pages/error.ejs');
         console.log(error.message);
     }); 
 }
 
 // === Helper functions ====
 function Book(bookObj) {
-    this.img_url = bookObj.volumeInfo.imageLinks.thumbnail? bookObj.volumeInfo.imageLinks.thumbnail : 'https://www.freeiconspng.com/uploads/book-icon--icon-search-engine-6.png',
+    this.img_url = bookObj.volumeInfo.imageLinks? bookObj.volumeInfo.imageLinks.thumbnail : 'https://www.freeiconspng.com/uploads/book-icon--icon-search-engine-6.png',
     this.title = bookObj.volumeInfo.title? bookObj.volumeInfo.title : 'Title not found',
     this.author = bookObj.volumeInfo.authors? bookObj.volumeInfo.authors[0] : 'Author not found', // takes first if multiple authors
     this.description = bookObj.volumeInfo.description? bookObj.volumeInfo.description : 'no description'
