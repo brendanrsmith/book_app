@@ -5,11 +5,15 @@ const express = require('express');
 const superagent = require('superagent');
 require('dotenv').config();
 const pg = require('pg'); // postgres
+const methodOverride = require('method-override'); // Method override for using DELTE or PUT methods
 
 // ====== Setup ======
 const app = express();
 app.use(express.urlencoded({extended: true})); // decodes http, used for POST method
 app.use(express.static('./public')); // load the public/styles folder to access css;
+app.use(methodOverride('_method')); // looks in our requests for query string of '_method'. It will change the HTTP method's type to whatever is stored as that query string _method
+// ?_method=delete :: makes method path into delete request
+// ?_method=put :: makes method path into put request 
 app.set('view engine', 'ejs'); // express handles ejs for us
 
 
