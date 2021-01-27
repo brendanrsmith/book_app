@@ -19,9 +19,9 @@
         <% for(let i = 0; i < results.length; i++){ %>
             <li>
                 <img src="<%= results[i].img_url %>"></img>
-                <h3>title<%= results[i].title %></h3>
-                <h4>author<%= results[i].author %></h4>
-                <p>desc<%= results[i].description %></p>
+                <h3><%= results[i].title %></h3>
+                <h4><%= results[i].author %></h4>
+                <p><%= results[i].description %></p>
                 <p>isbn: <%= results[i].isbn %></p>
             </li>
         <% } %>

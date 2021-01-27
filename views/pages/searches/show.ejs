@@ -21,6 +21,14 @@
                 <h3><%= results[i].title %></h3>
                 <h4><%= results[i].author %></h4>
                 <p><%= results[i].description %></p>
+                <form action="books" method="POST">
+                    <input type="hidden" name="title" value="<%= results[i].title %>">
+                    <input type="hidden" name="author" value="<%= results[i].author %>">
+                    <input type="hidden" name="description" value="<%= results[i].description %>">
+                    <input type="hidden" name="img_url" value="<%= results[i].img_url %>">
+                    <input type="hidden" name="isbn" value="<%= results[i].isbn %>">
+                    <input type="submit" value="Save to collection">
+                </form>
             </li>
         <% } %>
     </ul>

@@ -26,13 +26,13 @@ app.get('/', getHome);
 app.get('/searches/new', getSearchPage);
 app.post('/searches', searchBooks);
 app.get('/books/:id', getDetails);
+app.post('/books', saveBook);
 
 // ==== Route Callbacks ====
 function getHome(req, res) {
     // Query SQL db for saved books
     const sqlQuery = `SELECT * FROM books`;
     return client.query(sqlQuery).then(result => {
-        console.log(result);
         res.render('pages/index.ejs', {results : result.rows});
     })
 }
@@ -70,12 +70,19 @@ function getDetails(req, res) {
     })
 }
 
+function saveBook(req, res) {
+    console.log(req.body);
+    // sql insert query 
+    // res.redirect('/');
+}
+
 // === Helper functions ====
 function Book(bookObj) {
     this.img_url = bookObj.volumeInfo.imageLinks? bookObj.volumeInfo.imageLinks.thumbnail : 'https://www.freeiconspng.com/uploads/book-icon--icon-search-engine-6.png',
     this.title = bookObj.volumeInfo.title? bookObj.volumeInfo.title : 'Title not found',
-    this.author = bookObj.volumeInfo.authors? bookObj.volumeInfo.authors[0] : 'Author not found', // takes first if multiple authors
+    this.author = bookObj.volumeInfo.authors? bookObj.volumeInfo.authors.join(', ') : 'Author not found', // takes first if multiple authors
     this.description = bookObj.volumeInfo.description? bookObj.volumeInfo.description : 'no description'
+    this.isbn = bookObj.volumeInfo.industryIdentifiers? bookObj.volumeInfo.industryIdentifiers[0].identifier : 'no ISBN'
 }
 
 // ==== Start up the server ====
