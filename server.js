@@ -71,9 +71,17 @@ function getDetails(req, res) {
 }
 
 function saveBook(req, res) {
-    console.log(req.body);
+    // get book info from search results (form)
+    const book = req.body;
+
     // sql insert query 
-    // res.redirect('/');
+    const bookQuery = `INSERT INTO books (author, title, isbn, img_url, description) VALUES ($1, $2, $3, $4, $5)`;
+    const bookArray = [book.author, book.title, book.isbn, book.img_url, book.description];
+    client.query(bookQuery, bookArray);
+    console.log(`added ${book.title} to database`);
+
+    // send client back to homepage
+    res.redirect('/');
 }
 
 // === Helper functions ====

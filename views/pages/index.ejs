@@ -22,7 +22,9 @@
                 <h3><%= results[i].title %></h3>
                 <h4><%= results[i].author %></h4>
                 <p><%= results[i].description %></p>
-                <p>isbn: <%= results[i].isbn %></p>
+                <form action="/books/<%= i+1 %>" method="GET">
+                    <input type="submit" value="details">
+                </form>
             </li>
         <% } %>
     </ul>
