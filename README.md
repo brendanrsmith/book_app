@@ -88,17 +88,17 @@ Number and name of feature: Display saved books on homepage
 
 Estimate of time needed to complete: 1:00
 
-Start time: 3:35
+Start time: 3:30
 
-Finish time: _____
+Finish time: 3:56
 
-Actual time needed to complete: _____
+Actual time needed to complete: 0:25
 
 Number and name of feature: Book details page
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 1:00
 
-Start time: _____
+Start time: 4:00
 
 Finish time: _____
 
