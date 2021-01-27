@@ -6,6 +6,7 @@ codefellows 301 week 3 lab
 
 ## Overview
 This is a basic full-stack application for a book list which  includes the ability to search the Google Books API, add books to a database, and then render those books from a PostgreSQL database.
+
 ## Getting Started
 
 ## Architecture
@@ -14,12 +15,14 @@ This is a basic full-stack application for a book list which  includes the abili
 
 
 ## Credits and Collaborations
-TA Skylar (!), Nicco Ryan
+- Skyler Burger 
+- Nicco Ryan
 https://stackoverflow.com/questions/16193279/how-can-i-limit-a-text-inside-a-p
+
 https://www.w3schools.com/tags/att_input_type_radio.asp
 
 ## Lab 11
-Number and name of feature: Setup
+## Number and name of feature: #1 Setup
 
 Estimate of time needed to complete: 1hr
 
@@ -30,7 +33,7 @@ Finish time: 3:20
 Actual time needed to complete: 1:05
 
 
-Number and name of feature: Google Books API
+## Number and name of feature: #2 Google Books API
 
 Estimate of time needed to complete: 1hr
 
@@ -41,7 +44,7 @@ Finish time: 5:00
 Actual time needed to complete: 1:35
 
 
-Number and name of feature: Browse search results
+## Number and name of feature: #3 Browse search results
 
 Estimate of time needed to complete: 1:00
 
@@ -52,7 +55,7 @@ Finish time: 7:10
 Actual time needed to complete: 2:10
 
 
-Number and name of feature: Error Messages
+## Number and name of feature: #4 Error Messages
 
 Estimate of time needed to complete: 0:05
 
@@ -62,7 +65,7 @@ Finish time: 7:15
 
 Actual time needed to complete: 0:05
 
-Number and name of feature: Clean UI
+## Number and name of feature: #5 Clean UI
 
 Estimate of time needed to complete: 1:00
 
@@ -73,7 +76,7 @@ Finish time: 8:00
 Actual time needed to complete: 0:45
 
 
-Number and name of feature: Home Page
+## Number and name of feature: #6 Home Page
 
 Estimate of time needed to complete: 0:10
 
@@ -84,7 +87,7 @@ Finish time: 8:05
 Actual time needed to complete: 0:05
 
 ## Lab 12 
-Number and name of feature: Display saved books on homepage
+## Number and name of feature: #1 Display saved books on homepage
 
 Estimate of time needed to complete: 1:00
 
@@ -94,7 +97,7 @@ Finish time: 3:56
 
 Actual time needed to complete: 0:25
 
-Number and name of feature: Book details page
+## Number and name of feature: #2 Book details page
 
 Estimate of time needed to complete: 1:00
 
@@ -104,7 +107,7 @@ Finish time: 5:00
 
 Actual time needed to complete: 1:00
 
-Number and name of feature: Save new books to Database
+## Number and name of feature: #3 Save new books to Database
 
 Estimate of time needed to complete: 1:00
 
@@ -114,7 +117,7 @@ Finish time: 6:38
 
 Actual time needed to complete: 0:38
 
-Number and name of feature: Create partials, refactor
+## Number and name of feature: #4 Create partials, refactor
 
 Estimate of time needed to complete: 1:00
 
@@ -124,7 +127,7 @@ Finish time:
 
 Actual time needed to complete:  
 
-Number and name of feature: CSS
+## Number and name of feature: #5 CSS
 
 Estimate of time needed to complete: 1:00
 
