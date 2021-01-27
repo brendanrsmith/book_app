@@ -1,42 +1,54 @@
 body {
     background-color: #301d7040;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
 h4 {
     font-style: italic;
 }
+
 h3{
     font-size: 20px;
     padding-right: 10px;
 }
+
 p{
     padding: 12px;
 }
+
 li {
     background-color: #eee;
 }
+
 fieldset {
     background-color: #301d7070;
 }
+
 .header {
     text-align: center;
     padding: 10px;
     background-color: #888;
 }
+
 form {
     color: #eee;
     align-items: center;
 }
+
 nav {
     background-color: #666;
     color: #eee;
     padding: 10px;
 }
+
 nav a {
     color: #eee;
 }
+
 label {
     padding-left: 10px;
 }
+
 .header {
     color: #ddd;
 }
