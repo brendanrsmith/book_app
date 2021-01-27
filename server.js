@@ -1,51 +1,48 @@
 'use strict';
 
-// ==== Packages ====
+// ====== Packages ======
 const express = require('express');
 const superagent = require('superagent');
 require('dotenv').config();
 const pg = require('pg'); // postgres
 
-// ==== Setup ====
+// ====== Setup ======
 const app = express();
-
 app.use(express.urlencoded({extended: true})); // decodes http, used for POST method
 app.use(express.static('./public')); // load the public/styles folder to access css;
 app.set('view engine', 'ejs'); // express handles ejs for us
 
 
-// ==== Other global variables ====
+// ====== Other global variables ======
 const PORT = process.env.PORT || 3111;
 const DATABASE_URL = process.env.DATABASE_URL; // postgres url
 const client = new pg.Client(DATABASE_URL); // postgres client
-client.on('error', (error) => console.log(error));
+client.on('error', (error) => console.log(error)); // postgres error logging
 
 
-// ==== Routes ==== 
+// ====== Routes ====== 
 app.get('/', getHome);
-app.get('/searches/new', getSearchPage);
+app.get('/searches/new', renderSearchPage);
 app.post('/searches', searchBooks);
 app.get('/books/:id', getDetails);
 app.post('/books', saveBook);
 
-// ==== Route Callbacks ====
+// ====== Route Callbacks ======
 function getHome(req, res) {
-    // Query SQL db for saved books
-    const sqlQuery = `SELECT * FROM books`;
-    return client.query(sqlQuery).then(result => {
+    queryUserLibrary().then(result => {
         res.render('pages/index.ejs', {results : result.rows});
     })
 }
 
-function getSearchPage(req, res) {
+function renderSearchPage(req, res) {
     res.render('pages/searches/new.ejs');
 }
 
 function searchBooks(req, res) {
     const query = req.body.userInput;
+    const searchType = req.body.authorOrTitle
     console.log(query);
-    let url;
-    url = `https://www.googleapis.com/books/v1/volumes?q=in${req.body.authorOrTitle}:${query}`;
+    let url = `https://www.googleapis.com/books/v1/volumes?q=in${searchType}:${query}`;
     superagent.get(url).then(result => {
         // create new Book object
         const results = result.body.items.map(bookObj => {
@@ -64,27 +61,22 @@ function searchBooks(req, res) {
 function getDetails(req, res) {
     // query db for book:id
     const id = req.params.id;
-    const sqlQuery = `SELECT * FROM books WHERE id = ${id}`; // make id dynamic
-    return client.query(sqlQuery).then(result => {
+    detailsQuery(id).then(result => {
         res.render('pages/books/detail.ejs', {results : result.rows});
-    })
+    });
 }
 
 function saveBook(req, res) {
     // get book info from search results (form)
     const book = req.body;
-
-    // sql insert query 
-    const bookQuery = `INSERT INTO books (author, title, isbn, img_url, description) VALUES ($1, $2, $3, $4, $5)`;
-    const bookArray = [book.author, book.title, book.isbn, book.img_url, book.description];
-    client.query(bookQuery, bookArray);
-    console.log(`added ${book.title} to database`);
-
-    // send client back to homepage
-    res.redirect('/');
+    insertNewBook(book).then( () => {
+        console.log(`added ${book.title} to database`);
+        // send client back to homepage
+        res.redirect('/');
+    });
 }
 
-// === Helper functions ====
+// ====== Helper functions ======
 function Book(bookObj) {
     this.img_url = bookObj.volumeInfo.imageLinks? bookObj.volumeInfo.imageLinks.thumbnail : 'https://www.freeiconspng.com/uploads/book-icon--icon-search-engine-6.png',
     this.title = bookObj.volumeInfo.title? bookObj.volumeInfo.title : 'Title not found',
@@ -93,7 +85,24 @@ function Book(bookObj) {
     this.isbn = bookObj.volumeInfo.industryIdentifiers? bookObj.volumeInfo.industryIdentifiers[0].identifier : 'no ISBN'
 }
 
-// ==== Start up the server ====
+function queryUserLibrary(){
+    // Query SQL db for all saved books
+    const sqlQuery = `SELECT * FROM books`;
+    return client.query(sqlQuery)
+}
+
+function insertNewBook(book) {
+    // sql insert query 
+    const bookQuery = `INSERT INTO books (author, title, isbn, img_url, description) VALUES ($1, $2, $3, $4, $5)`;
+    const bookArray = [book.author, book.title, book.isbn, book.img_url, book.description];
+    return client.query(bookQuery, bookArray);
+}
+
+function detailsQuery(id) {
+    const sqlQuery = `SELECT * FROM books WHERE id = ${id}`; // make id dynamic
+    return client.query(sqlQuery);
+}
+// ====== Start up the server ======
 client.connect() // Starts connection to postgres 
 .then ( () => {
     app.listen(PORT, () => console.log(`we are up on PORT ${PORT}`)); // Starts up server
