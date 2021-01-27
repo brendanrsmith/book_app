@@ -14,7 +14,7 @@ This is a basic full-stack application for a book list which  includes the abili
 - Generate .env file with values for PORT, DATABASE_URL
 
 ## Architecture
-Requires Node.js, dotenv, postgres, superagent, and express. 
+Requires Node.js, dotenv, postgres, superagent, method-override, and express libraries. 
 
 ## Change Log
 1-26-21 7:33PM - Added save-book-to-database functionality, saved book details page, refactored server functions. 
