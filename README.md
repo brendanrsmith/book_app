@@ -6,12 +6,19 @@ codefellows 301 week 3 lab
 
 ## Overview
 This is a basic full-stack application for a book list which  includes the ability to search the Google Books API, add books to a database, and then render those books from a PostgreSQL database.
+
 ## Getting Started
+- Get connection string for Postgres database-url
+- install node modules
+- set up a port 
+- Generate .env file with values for PORT, DATABASE_URL
 
 ## Architecture
+Requires Node.js, dotenv, postgres, superagent, and express. 
 
 ## Change Log
-
+1-26-21 7:33PM - Added save-book-to-database functionality, saved book details page, refactored server functions. 
+1-25-21 8:15PM - Added search by Author and Title functionality, and search results page. 
 
 ## Credits and Collaborations
 TA Skylar (!), Nicco Ryan
