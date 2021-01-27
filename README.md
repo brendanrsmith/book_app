@@ -9,7 +9,7 @@ This is a basic full-stack application for a book list which  includes the abili
 
 ## Getting Started
 - Get connection string for Postgres database-url
-- install node modules
+- install node modules (npm install)
 - set up a port 
 - Generate .env file with values for PORT, DATABASE_URL
 
