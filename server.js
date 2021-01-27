@@ -24,15 +24,15 @@ client.on('error', (error) => console.log(error));
 // ==== Routes ==== 
 app.get('/', getHome);
 app.get('/searches/new', getSearchPage);
-// app.post('/searches/new', );
 app.post('/searches', searchBooks);
+app.get('/books/:id', getDetails);
+app.post('/books', saveBook);
 
 // ==== Route Callbacks ====
 function getHome(req, res) {
     // Query SQL db for saved books
     const sqlQuery = `SELECT * FROM books`;
     return client.query(sqlQuery).then(result => {
-        console.log(result);
         res.render('pages/index.ejs', {results : result.rows});
     })
 }
@@ -45,19 +45,12 @@ function searchBooks(req, res) {
     const query = req.body.userInput;
     console.log(query);
     let url;
-    if(req.body.authorOrTitle === 'title'){
-        url = `https://www.googleapis.com/books/v1/volumes?q=intitle:${query}`;
-    } else {
-        url = `https://www.googleapis.com/books/v1/volumes?q=inauthor:${query}`;
-    }
-    // const url = `https://www.googleapis.com/books/v1/volumes?q=${query}`;
+    url = `https://www.googleapis.com/books/v1/volumes?q=in${req.body.authorOrTitle}:${query}`;
     superagent.get(url).then(result => {
         // create new Book object
         const results = result.body.items.map(bookObj => {
-            // console.log(new Book(bookObj));
             return new Book(bookObj);
         })
-        // console.log(results);
         // render results page
         res.render('pages/searches/show.ejs', {results: results} );
     })
@@ -68,12 +61,36 @@ function searchBooks(req, res) {
     }); 
 }
 
+function getDetails(req, res) {
+    // query db for book:id
+    const id = req.params.id;
+    const sqlQuery = `SELECT * FROM books WHERE id = ${id}`; // make id dynamic
+    return client.query(sqlQuery).then(result => {
+        res.render('pages/books/detail.ejs', {results : result.rows});
+    })
+}
+
+function saveBook(req, res) {
+    // get book info from search results (form)
+    const book = req.body;
+
+    // sql insert query 
+    const bookQuery = `INSERT INTO books (author, title, isbn, img_url, description) VALUES ($1, $2, $3, $4, $5)`;
+    const bookArray = [book.author, book.title, book.isbn, book.img_url, book.description];
+    client.query(bookQuery, bookArray);
+    console.log(`added ${book.title} to database`);
+
+    // send client back to homepage
+    res.redirect('/');
+}
+
 // === Helper functions ====
 function Book(bookObj) {
     this.img_url = bookObj.volumeInfo.imageLinks? bookObj.volumeInfo.imageLinks.thumbnail : 'https://www.freeiconspng.com/uploads/book-icon--icon-search-engine-6.png',
     this.title = bookObj.volumeInfo.title? bookObj.volumeInfo.title : 'Title not found',
-    this.author = bookObj.volumeInfo.authors? bookObj.volumeInfo.authors[0] : 'Author not found', // takes first if multiple authors
+    this.author = bookObj.volumeInfo.authors? bookObj.volumeInfo.authors.join(', ') : 'Author not found', // takes first if multiple authors
     this.description = bookObj.volumeInfo.description? bookObj.volumeInfo.description : 'no description'
+    this.isbn = bookObj.volumeInfo.industryIdentifiers? bookObj.volumeInfo.industryIdentifiers[0].identifier : 'no ISBN'
 }
 
 // ==== Start up the server ====
