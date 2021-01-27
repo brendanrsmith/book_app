@@ -14,7 +14,7 @@ This is a basic full-stack application for a book list which  includes the abili
 
 
 ## Credits and Collaborations
-TA Skylar (!)
+TA Skylar (!), Nicco Ryan
 https://stackoverflow.com/questions/16193279/how-can-i-limit-a-text-inside-a-p
 https://www.w3schools.com/tags/att_input_type_radio.asp
 
@@ -114,21 +114,21 @@ Finish time: 6:38
 
 Actual time needed to complete: 0:38
 
-Number and name of feature: Create partials
+Number and name of feature: Create partials, refactor
 
 Estimate of time needed to complete: 1:00
 
-Start time: 6:38
+Start time: 7:00
 
-Finish time: _____
+Finish time: 
 
-Actual time needed to complete: _____
+Actual time needed to complete:  
 
 Number and name of feature: CSS
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 1:00
 
-Start time: _____
+Start time: 7:00
 
 Finish time: _____
 
