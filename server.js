@@ -69,10 +69,12 @@ function getDetails(req, res) {
 function saveBook(req, res) {
     // get book info from search results (form)
     const book = req.body;
-    insertNewBook(book).then( () => {
+    insertNewBook(book).then( (result) => {
         console.log(`added ${book.title} to database`);
-        // send client back to homepage
-        res.redirect('/');
+        // set id as new book's sql id 
+        const id = result.rows[0].id;
+        // send client back to new book details page
+        res.redirect(`/books/${id}`);
     });
 }
 
@@ -92,8 +94,8 @@ function queryUserLibrary(){
 }
 
 function insertNewBook(book) {
-    // sql insert query 
-    const bookQuery = `INSERT INTO books (author, title, isbn, img_url, description) VALUES ($1, $2, $3, $4, $5)`;
+    // sql insert query, return new book entry id
+    const bookQuery = `INSERT INTO books (author, title, isbn, img_url, description) VALUES ($1, $2, $3, $4, $5) RETURNING id`;
     const bookArray = [book.author, book.title, book.isbn, book.img_url, book.description];
     return client.query(bookQuery, bookArray);
 }
