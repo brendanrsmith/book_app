@@ -60,16 +60,8 @@ img {
     width: 100%;
     height: 100%;
 }
-button, .details {
-    background-color: #301d7090;
-    color: #eee;
-    height: 40px;
-    width: 80px;
-    border: none;
-}
-.updater{
-    background-color: transparent;
-}
+
+
 .updater * {
     height: 30px;
     margin: 10px;
