@@ -23,6 +23,7 @@ Requires Node.js, dotenv, postgres, superagent, method-override, and express lib
 ## Credits and Collaborations
 - Skyler Burger 
 - Nicco Ryan
+- Brai Frauen
 https://stackoverflow.com/questions/16193279/how-can-i-limit-a-text-inside-a-p
 
 https://www.w3schools.com/tags/att_input_type_radio.asp
@@ -138,6 +139,16 @@ Actual time needed to complete:
 Estimate of time needed to complete: 1:00
 
 Start time: 7:00
+
+Finish time: _____
+
+Actual time needed to complete: _____
+
+## Number and name of feature: #1 Update details
+
+Estimate of time needed to complete: 30
+
+Start time: 3:10
 
 Finish time: _____
 

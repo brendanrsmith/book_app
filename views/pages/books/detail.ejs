@@ -15,7 +15,7 @@
         <h2>detail page</h2>
     </nav>
     <legend class="header"><a href="/">Go back home</a></legend>
-    <ul>
+    <ul id='book-details'>
         <% for(let i = 0; i < results.length; i++){ %>
             <li>
                 <img src="<%= results[i].img_url %>"></img>
@@ -23,8 +23,23 @@
                 <h4><%= results[i].author %></h4>
                 <p><%= results[i].description %></p>
                 <p>isbn: <%= results[i].isbn %></p>
+                <!-- <form onsubmit="showUpdate()">
+                    <input id='update' type='submit' value='update'>               
+                </form> -->
+                <button onclick="showUpdate()">Update</button>
             </li>
         <% } %>
     </ul>
+    <ul id='update-form' style="display: none">
+        <%- include('edit.ejs') %>
+    </ul>
+
+    <script>
+    function showUpdate() {
+        document.getElementById('book-details').style.display='none';
+        document.getElementById('update-form').style.display='block';
+    }
+    </script>
+
 </body>
 </html>
