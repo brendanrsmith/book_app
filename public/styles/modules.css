@@ -49,3 +49,27 @@ nav a {
 label {
     padding-left: 10px;
 }
+
+.isbn {
+    text-align: center;
+    font-size: small;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.desc {
+    width: 80%;
+    border-radius: 2px;
+}
+.transparent {
+    background-color: transparent;
+}
+.updater{
+    background-color: transparent;
+}
+button, .details {
+    background-color: #301d7090;
+    color: #eee;
+    height: 40px;
+    width: 80px;
+    border: none;
+}

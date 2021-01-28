@@ -13,10 +13,10 @@
                     <h4>
                         <%= results[i].author %>
                     </h4>
-                    <p>
+                    <p class="desc">
                         <%= results[i].description %>
                     </p>
-                    <p>isbn: <%= results[i].isbn %>
+                    <p class="isbn">isbn: <%= results[i].isbn %>
                     </p>
                     <button onclick="showUpdate()">Update book</button>
                     <form action='/books/<%= results[i].id%>?_method=delete' method='POST'>
