@@ -1,12 +1,12 @@
-<% for(let i = 0; i < results.length; i++){ %>
-  <li>
-    <form action='/books/<%= results[i].id%>?_method=put' method='POST'>
+<% for(let i=0; i < results.length; i++){ %>
+  <li class="transparent">
+    <form class="updater" action='/books/<%= results[i].id%>?_method=put' method='POST'>
       <input class="full-width" name="editTitle" type='text' value='<%= results[i].title %>'></input>
       <input class="full-width" name="editAuthor" type='text' value='<%= results[i].author %>'></input>
       <input class="full-width" name="editDesc" type='text' value='<%= results[i].description %>'></input>
       <input class="full-width" name="editIsbn" type='text' value='<%= results[i].isbn %>'></input>
-      <input class="full-width" name="editUrl" type='text' value='<%= results[i].img_url%>'></input>                          
-      <input class="full-width" type='submit' value='update'>               
-      </form>
+      <input class="full-width" name="editUrl" type='text' value='<%= results[i].img_url%>'></input>
+      <input class="full-width" type='submit' value='update'>
+    </form>
   </li>
-<% } %>
+  <% } %>

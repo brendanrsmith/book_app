@@ -1,6 +1,6 @@
 body {
     background-color: #301d7040;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family:'Open Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 h4 {
@@ -26,8 +26,9 @@ fieldset {
 
 .header {
     text-align: center;
-    padding: 10px;
     background-color: #888;
+    color: #eee;
+    padding: 8px;
 }
 
 form {
@@ -49,6 +50,26 @@ label {
     padding-left: 10px;
 }
 
-.header {
-    color: #ddd;
+.isbn {
+    text-align: center;
+    font-size: small;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.desc {
+    width: 80%;
+    border-radius: 2px;
+}
+.transparent {
+    background-color: transparent;
+}
+.updater{
+    background-color: transparent;
+}
+button, .details {
+    background-color: #301d7090;
+    color: #eee;
+    height: 40px;
+    width: 80px;
+    border: none;
 }
