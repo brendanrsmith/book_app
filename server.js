@@ -30,6 +30,8 @@ app.get('/searches/new', renderSearchPage);
 app.post('/searches', searchBooks);
 app.get('/books/:id', getDetails);
 app.post('/books', saveBook);
+app.put('/books/:id', editBook);
+
 
 // ====== Route Callbacks ======
 function getHome(req, res) {
@@ -80,6 +82,13 @@ function saveBook(req, res) {
         // send client back to new book details page
         res.redirect(`/books/${id}`);
     });
+}
+
+function editBook(req, res) {
+    //this will render book editing page
+    const id = req.params.id;
+    console.log(req.body.userInput);
+         
 }
 
 // ====== Helper functions ======
