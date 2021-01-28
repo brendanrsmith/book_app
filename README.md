@@ -17,6 +17,7 @@ This is a basic full-stack application for a book list which  includes the abili
 Requires Node.js, dotenv, postgres, superagent, method-override, and express libraries. 
 
 ## Change Log
+1-27-21 8:30PM - Added edit-book, delete-book functionality and updated CSS
 1-26-21 7:33PM - Added save-book-to-database functionality, saved book details page, refactored server functions. 
 1-25-21 8:15PM - Added search by Author and Title functionality, and search results page. 
 
@@ -146,10 +147,21 @@ Actual time needed to complete: _____
 
 ## Number and name of feature: #1 Update details
 
-Estimate of time needed to complete: 30
+Estimate of time needed to complete: 1:00
 
 Start time: 3:10
 
-Finish time: _____
+Finish time: 5:00
 
-Actual time needed to complete: _____
+Actual time needed to complete: 2:50
+
+## Number and name of feature: #2 Delete books
+
+Estimate of time needed to complete: 1:00
+
+Start time: 6:00
+
+Finish time: 6:50
+
+Actual time needed to complete: 0:50
+
