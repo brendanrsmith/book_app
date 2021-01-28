@@ -23,10 +23,11 @@
                 <h4><%= results[i].author %></h4>
                 <p><%= results[i].description %></p>
                 <p>isbn: <%= results[i].isbn %></p>
-                <!-- <form onsubmit="showUpdate()">
-                    <input id='update' type='submit' value='update'>               
-                </form> -->
-                <button onclick="showUpdate()">Update</button>
+                <button onclick="showUpdate()">Update book</button>
+                <form action='/books/<%= results[i].id%>?_method=delete' method='POST'>
+                    <button type="submit">Delete book</button>
+                </form>
+                
             </li>
         <% } %>
     </ul>
