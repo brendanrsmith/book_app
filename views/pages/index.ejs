@@ -2,8 +2,10 @@
 
     <body>
         <%- include('../layout/header.ejs') %>
-        <legend class="header"><a href="/searches/new">Go make a search</a></legend>
-        <h2>there are currently <%= results.length %> books in the database</h2>
+        <div class="header">
+            <a href="/searches/new">Search for books</a>
+            <p><%= results.length %> saved books</p>
+        </div>
         <ul>
             <% for(let i=0; i < results.length; i++){ %>
                 <li>
@@ -14,9 +16,6 @@
                     <h4>
                         <%= results[i].author %>
                     </h4>
-                    <p>
-                        <%= results[i].description %>
-                    </p>
                     <form action="/books/<%= results[i].id %>" method="GET">
                         <input type="submit" value="details">
                     </form>

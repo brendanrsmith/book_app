@@ -17,8 +17,7 @@ form {
 }
 
 .header {
-    height: 40px;
-    margin-bottom: 20px;
+    /* height: 40px; */
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row: 2;
@@ -27,7 +26,6 @@ form {
 fieldset {
     height: 40px;
     margin: 10px 20px;
-    /* width: 50%; */
     grid-column-start: 2;
     grid-column-end: 3;
     display: flex;
@@ -40,16 +38,22 @@ ul {
 }
 
 li {
-    margin-bottom: 10px;
     justify-content: center;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 10px auto;
+}
+li * {
+    margin-bottom: 5px;
 }
 
 img {
-    padding: 5% 30%;
-    width: 70%;
+    padding: 5px 30%;
+    /* width: 70%; */
 }
 
 .full-width {

@@ -26,8 +26,9 @@ fieldset {
 
 .header {
     text-align: center;
-    padding: 10px;
     background-color: #888;
+    color: #eee;
+    padding: 8px;
 }
 
 form {
@@ -47,8 +48,4 @@ nav a {
 
 label {
     padding-left: 10px;
-}
-
-.header {
-    color: #ddd;
 }
