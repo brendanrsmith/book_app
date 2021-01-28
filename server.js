@@ -31,6 +31,7 @@ app.post('/searches', searchBooks);
 app.get('/books/:id', getDetails);
 app.post('/books', saveBook);
 app.put('/books/:id', editBook);
+app.delete('/books/:id', deleteBook);
 
 
 // ====== Route Callbacks ======
@@ -87,8 +88,32 @@ function saveBook(req, res) {
 function editBook(req, res) {
     //this will render book editing page
     const id = req.params.id;
-    console.log(req.body.userInput);
-         
+    console.log(id);
+    const title = req.body.editTitle;
+    const author = req.body.editAuthor;
+    const description = req.body.editDesc;
+    const isbn = req.body.editIsbn;
+    const img_url = req.body.editUrl;
+    
+    // query sql database to update with new info
+    const sqlQuery = 'UPDATE books SET title=$1, author=$2, isbn=$3, img_url=$4, description=$5 WHERE id = $6;';
+    const sqlArray = [title, author, isbn, img_url, description, id];
+    return client.query(sqlQuery, sqlArray).then( (result) => {
+        console.log(`updated row ${id}`);
+        res.redirect(`/books/${id}`);
+    });
+}
+
+function deleteBook(req, res) {
+    const id = req.params.id;
+    
+    // query db to delete row
+    const sqlQuery = 'DELETE FROM books WHERE id = $1;';
+    const sqlArray = [id];
+    return client.query(sqlQuery, sqlArray).then(() => {
+        console.log(`deleted row `);
+        res.redirect('/');
+    });
 }
 
 // ====== Helper functions ======
@@ -102,19 +127,19 @@ function Book(bookObj) {
 
 function queryUserLibrary(){
     // Query SQL db for all saved books
-    const sqlQuery = `SELECT * FROM books`;
+    const sqlQuery = `SELECT * FROM books ORDER BY id`;
     return client.query(sqlQuery)
 }
 
 function insertNewBook(book) {
     // sql insert query, return new book entry id
-    const bookQuery = `INSERT INTO books (author, title, isbn, img_url, description) VALUES ($1, $2, $3, $4, $5) RETURNING id`;
+    const bookQuery = `INSERT INTO books (author, title, isbn, img_url, description) VALUES ($1, $2, $3, $4, $5) RETURNING id;`;
     const bookArray = [book.author, book.title, book.isbn, book.img_url, book.description];
     return client.query(bookQuery, bookArray);
 }
 
 function detailsQuery(id) {
-    const sqlQuery = `SELECT * FROM books WHERE id = ${id}`; // make id dynamic
+    const sqlQuery = `SELECT * FROM books WHERE id = ${id};`; // make id dynamic
     return client.query(sqlQuery);
 }
 // ====== Start up the server ======
