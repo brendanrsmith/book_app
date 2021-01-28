@@ -1,35 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../styles/reset.css">
-    <link rel="stylesheet" href="../../styles/base.css">
-    <link rel="stylesheet" href="../../styles/layout.css">
-    <link rel="stylesheet" href="../../styles/modules.css">
-    <title>New Search</title>
-</head>
-<body>
-    <nav>
-        <h1><a href="/">Best Books!</a></h1>
-    </nav>
-    <legend class="header">Search by Title or Author</legend>
+<%- include('../../layout/head.ejs') %>
 
-    <form action="/searches" method="POST">
-        <fieldset>
-            <input class="full-width" type="text" name="userInput" placeholder="Enter a title or author">
-        </fieldset>
-        <fieldset>
-            <label for="title">Title</label>
-            <input type="radio" id='title' name="authorOrTitle" value="title">
-        </fieldset>
-        <fieldset>
-            <label for="author">Author</label>
-            <input type="radio" id='author' name="authorOrTitle" value="author">
-        </fieldset>
-        <fieldset>
-            <input class="full-width" type="submit" value="Search the Google Books API">
-        </fieldset>
-    </form>
-</body>
-</html>
+    <body>
+        <%- include('../../layout/header.ejs') %>
+        <legend class="header">Search by Title or Author</legend>
+
+        <form action="/searches" method="POST">
+            <fieldset>
+                <input class="full-width" type="text" name="userInput" placeholder="Enter a title or author">
+            </fieldset>
+            <fieldset>
+                <label for="title">Title</label>
+                <input type="radio" id='title' name="authorOrTitle" value="title">
+            </fieldset>
+            <fieldset>
+                <label for="author">Author</label>
+                <input type="radio" id='author' name="authorOrTitle" value="author">
+            </fieldset>
+            <fieldset>
+                <input class="full-width" type="submit" value="Search the Google Books API">
+            </fieldset>
+        </form>
+        <%- include('../../layout/footer.ejs') %>
+    </body>
+
+    </html>

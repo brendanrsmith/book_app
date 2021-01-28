@@ -1,46 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/reset.css">
-    <link rel="stylesheet" href="/styles/base.css">
-    <link rel="stylesheet" href="/styles/layout.css">
-    <link rel="stylesheet" href="/styles/modules.css">
-    <title>detail page</title>
-</head>
-<body>
-    <nav>
-        <h1><a href="/">Best Books!</a></h1>
-        <h2>detail page</h2>
-    </nav>
-    <legend class="header"><a href="/">Go back home</a></legend>
-    <ul id='book-details'>
-        <% for(let i = 0; i < results.length; i++){ %>
-            <li>
-                <img src="<%= results[i].img_url %>"></img>
-                <h3><%= results[i].title %></h3>
-                <h4><%= results[i].author %></h4>
-                <p><%= results[i].description %></p>
-                <p>isbn: <%= results[i].isbn %></p>
-                <button onclick="showUpdate()">Update book</button>
-                <form action='/books/<%= results[i].id%>?_method=delete' method='POST'>
-                    <button type="submit">Delete book</button>
-                </form>
-                
-            </li>
-        <% } %>
-    </ul>
-    <ul id='update-form' style="display: none">
-        <%- include('edit.ejs') %>
-    </ul>
+<%- include('../../layout/head.ejs') %>
 
-    <script>
-    function showUpdate() {
-        document.getElementById('book-details').style.display='none';
-        document.getElementById('update-form').style.display='block';
-    }
-    </script>
+    <body>
+        <%- include('../../layout/header.ejs') %>
+        <legend class="header"><a href="/">Go back home</a></legend>
+        <ul id='book-details'>
+            <% for(let i=0; i < results.length; i++){ %>
+                <li>
+                    <img src="<%= results[i].img_url %>"></img>
+                    <h3>
+                        <%= results[i].title %>
+                    </h3>
+                    <h4>
+                        <%= results[i].author %>
+                    </h4>
+                    <p>
+                        <%= results[i].description %>
+                    </p>
+                    <p>isbn: <%= results[i].isbn %>
+                    </p>
+                    <button onclick="showUpdate()">Update book</button>
+                    <form action='/books/<%= results[i].id%>?_method=delete' method='POST'>
+                        <button type="submit">Delete book</button>
+                    </form>
 
-</body>
-</html>
+                </li>
+                <% } %>
+        </ul>
+        <ul id='update-form' style="display: none">
+            <%- include('edit.ejs') %>
+        </ul>
+        <%- include('../../layout/footer.ejs') %>
+    </body>
+
+    </html>
